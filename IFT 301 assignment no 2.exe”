@@ -1,0 +1,32 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Data from the table
+female_heights = [175, 158, 166, 175, 160, 165, 166, 170, 170, 172]
+female_breath_held = [22.22, 30.57, 17.47, 22.39, 26.90, 36.85, 27.33, 29.55, 13.87, 34.66]
+male_heights = [184, 182, 180, 191, 189, 181, 180, 170, 176, 185]
+male_breath_held = [60.75, 67.41, 42.19, 59.74, 52.64, 43.37, 73.27, 59.09, 51.15, 58.32]
+
+# Combine breath-holding times for all participants
+all_breath_held = female_breath_held + male_breath_held
+
+# Histogram for all breath-holding times
+plt.figure(figsize=(8, 6))
+plt.hist(all_breath_held, bins=10, edgecolor='black')
+plt.title('Histogram of Breath-Holding Times')
+plt.xlabel('Breath-Holding Time (s)')
+plt.ylabel('Frequency')
+plt.grid(axis='y', alpha=0.75)
+plt.show()
+
+# Side-by-side dot plot for males and females
+plt.figure(figsize=(8, 6))
+plt.scatter(np.zeros_like(female_breath_held), female_breath_held, label='Female', marker='o', s=100, color='blue')
+plt.scatter(np.ones_like(male_breath_held), male_breath_held, label='Male', marker='x', s=100, color='red')
+plt.title('Side-by-Side Dot Plot of Breath-Holding Times')
+plt.xlabel('Sex')
+plt.ylabel('Breath-Holding Time (s)')
+plt.xticks([0, 1], ['Female', 'Male'])
+plt.legend()
+plt.grid()
+plt.show()

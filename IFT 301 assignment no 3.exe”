@@ -1,0 +1,45 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from scipy import stats
+
+# Step 1: Simulate Data
+np.random.seed(42)  # For reproducibility
+music_growth = np.random.normal(loc=15, scale=5, size=100)  # Plants with music
+no_music_growth = np.random.normal(loc=10, scale=5, size=100)  # Plants without music
+
+# Step 2: Visualize Data
+plt.figure(figsize=(12, 6))
+
+# Dot plots
+plt.subplot(1, 2, 1)
+plt.title('Dot Plot of Plant Growth')
+plt.xlabel('Growth (cm)')
+plt.ylabel('Frequency')
+sns.stripplot(data=[music_growth, no_music_growth], jitter=True, palette='Set2', alpha=0.7)
+plt.xticks([0, 1], ['With Music', 'Without Music'])
+
+# Histograms
+plt.subplot(1, 2, 2)
+plt.title('Histogram of Plant Growth')
+plt.xlabel('Growth (cm)')
+plt.ylabel('Frequency')
+plt.hist(music_growth, bins=15, alpha=0.5, label='With Music', color='blue')
+plt.hist(no_music_growth, bins=15, alpha=0.5, label='Without Music', color='orange')
+plt.legend()
+
+plt.tight_layout()
+plt.show()
+
+# Step 3: Statistical Test
+t_stat, p_value = stats.ttest_ind(music_growth, no_music_growth)
+
+print(f'T-statistic: {t_stat:.2f}')
+print(f'P-value: {p_value:.4f}')
+
+# Conclusion
+alpha = 0.05
+if p_value < alpha:
+    print("Reject the null hypothesis: There is a significant difference in plant growth.")
+else:
+    print("Fail to reject the null hypothesis: There is no significant difference in plant growth.")

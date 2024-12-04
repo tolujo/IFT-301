@@ -1,0 +1,15 @@
+import matplotlib.pyplot as plt
+
+# Data for the bar chart
+categories = ['Spinach', 'Sausage', 'Prawns', 'Pineapple', 'Mushroom']
+proportions = [0.27, 0.17, 0.08, 0.27, 0.17]
+
+# Create the bar chart
+plt.barh(categories, proportions, color='#957DAD')
+
+# Set the labels and title
+plt.xlabel('Proportion of Total')
+plt.title('Distribution of Categorical Variable')
+
+# Show the plot
+plt.show()
